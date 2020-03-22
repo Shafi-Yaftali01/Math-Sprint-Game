@@ -54,7 +54,7 @@ body {
     opacity: .5;
 }
 
-.selected {
+.selected-item {
     background-color: dodgerblue;
     color: white;
     margin: 0;
@@ -74,7 +74,7 @@ body {
     color: green;
 }
 
-.footer {
+.item-footer, .selection-footer {
     width: 100%;
     height: 90px;
     background-color: rgba(0,0,0,1);
@@ -87,14 +87,6 @@ body {
 
 button {
     cursor: pointer;
-}
-
-button:hover {
-    filter: brightness(90%);
-}
-
-#wrong, #right {
-    width: 40%;
     height: 50px;
     border-radius: 5px;
     font-size: 25px;
@@ -104,6 +96,14 @@ button:hover {
     outline: none;
 }
 
+button:hover {
+    filter: brightness(90%);
+}
+
+#wrong, #right {
+    width: 40%;
+}
+
 #wrong {
     background-color: red;
     margin-right: 25px;
@@ -111,4 +111,74 @@ button:hover {
 
 #right {
     background-color: green;
+}
+
+#start {
+    width: 90%;
+    background-color: green; 
+}
+
+/* Splash Page */
+input[type="radio"] {
+    opacity: 0;
+    width: 100%;
+    height: 75px;
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.selection-container {
+    position: relative;
+    top: 65px;
+}
+
+.radio-container {
+    width: 90%;
+    height: 75px;
+    margin: 25px;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+label {
+    position: relative;
+    top: -62px;
+    left: 20px;
+    font-size: 30px;
+}
+
+.selected-label {
+    border: 2px solid rgb(0, 126, 251);
+    background-color: dodgerblue;
+    color: white;
+}
+
+.best-score {
+    position: relative;
+    top: -100px;
+    left: 130px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.best-score p {
+    margin: 0;
+}
+
+.best-score p:last-child {
+    font-size: 24px;
+}
+
+/* input:checked + label {
+    background-color: #5AB8AB;
+    border: 2px solid #3F9188 !important;
+    border-radius: 5px; 
+    z-index: 2;
+    color: white;
+} */
+
+.selection-footer {
+    top: 134px;
 }

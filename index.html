@@ -13,7 +13,7 @@
         <div class="header">
             <h1>Math Sprint Game</h1>
         </div>
-        <div class="card">
+        <!-- <div class="card" id="game-page">
             <div class="item-container">
                 <div class="item finished">
                     <h1>3 x 30 = 30</h1>
@@ -27,7 +27,7 @@
                     <h1>3 x 30 = 30</h1>
                     <i class="fas fa-times-circle"></i>
                 </div>
-                <div class="item selected">
+                <div class="item selected-item">
                     <h1>3 x 30 = 30</h1>           
                 </div>
                 <div class="item">
@@ -40,10 +40,51 @@
                     <h1>3 x 30 = 30</h1>
                 </div>
             </div>
-            <div class="footer">
+            <div class="item-footer">
                 <button id="wrong">Wrong</button>
                 <button id="right">Right</button>
             </div>
+        </div> -->
+        <div class="card" id="splash-page">
+            <form id="start-form">
+                <div class="selection-container">
+                    <div class="radio-container">
+                        <input type="radio" name="questions">
+                        <label for="questions">10 Questions</label>
+                        <span class="best-score">
+                            <p>Best Score</p>
+                            <p>0:09</p>
+                        </span>
+                    </div>
+                <div class="radio-container selected-label">
+                        <input type="radio" name="questions">
+                        <label for="questions">25 Questions</label>
+                        <span class="best-score">
+                            <p>Best Score</p>
+                            <p>0:09</p>
+                        </span>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" name="questions">
+                        <label for="questions">50 Questions</label>
+                        <span class="best-score">
+                            <p>Best Score</p>
+                            <p>0:09</p>
+                        </span>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" name="questions">
+                        <label for="questions">99 Questions</label>
+                        <span class="best-score">
+                            <p>Best Score</p>
+                            <p>0:09</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="selection-footer">
+                    <button id="start">Start</button>
+                </div>
+            </form>
         </div>
     </div>
     <!-- Script -->
