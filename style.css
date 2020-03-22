@@ -224,3 +224,16 @@ label {
 .penalty {
     color: var(--danger);
 }
+
+/* Countdown Page */
+.card#countdown-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countdown {
+    font-size: 100px;
+    user-select: none;
+    cursor: pointer;
+}
