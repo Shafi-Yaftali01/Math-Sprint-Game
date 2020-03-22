@@ -5,6 +5,8 @@
 :root {
     --primary-color: rgb(15, 158, 2);
     --select-color: dodgerblue;
+    --success: rgb(15, 158, 2);
+    --danger: red;
 }
 
 body {
@@ -24,7 +26,7 @@ body {
     width: 530px;
     height: 750px;
     position: relative;
-    background-color: whitesmoke;
+    background-color: rgba(255, 255, 255, .5);
 }
 
 .header {
@@ -70,11 +72,11 @@ body {
 }
 
 .fa-times-circle {
-    color: red;
+    color: var(--danger);
 }
 
 .fa-check-circle {
-    color: green;
+    color: var(--success);
 }
 
 .item-footer, .selection-footer {
@@ -184,4 +186,41 @@ label {
 
 .selection-footer {
     top: 134px;
+}
+
+/* Score Page */
+.score-container {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-footer {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -30px;
+}
+
+.title {
+    font-size: 45px;
+}
+
+.time {
+    font-size: 100px;
+    margin: 0;
+    color: var(--success);
+}
+
+.base-time {
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+.penalty {
+    color: var(--danger);
 }
