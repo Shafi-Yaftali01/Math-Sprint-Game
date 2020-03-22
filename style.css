@@ -50,8 +50,13 @@ body {
     user-select: none;
 }
 
+.finished > h1 {
+    opacity: .5;
+}
+
 .selected {
     background-color: dodgerblue;
+    color: white;
     margin: 0;
     padding-left: 50px;
 }
