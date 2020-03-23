@@ -1,3 +1,6 @@
+const gamePage = document.getElementById('game-page');
+const scorePage = document.getElementById('score-page');
+const splashPage = document.getElementById('splash-page');
 const countdownPage = document.getElementById('countdown-page');
 const countdown = document.getElementById('countdown');
 const startForm = document.getElementById('start-form');
@@ -8,19 +11,31 @@ const value99 = document.getElementById('value-99');
 
 let questionAmount;
 
-// countdown.addEventListener('click', countdownStart);
-// function countdownStart() {
-//     countdown.innerText = '3';
-//     setTimeout(() => { countdown.innerText = '2' }, 1000);
-//     setTimeout(() => { countdown.innerText = '1' }, 2000);
-//     setTimeout(() => { countdown.innerText = 'GO!'; }, 3000);
-// }
+function countdownStart() {
+    countdown.innerText = '3'; 
+    setTimeout(() => { countdown.innerText = '2' }, 1000);
+    setTimeout(() => { countdown.innerText = '1' }, 2000);
+    setTimeout(() => { countdown.innerText = 'GO!' }, 3000);
+}
+
+function showCountdown() {
+    countdownPage.style.display = 'flex';
+    splashPage.style.display = 'none';
+    countdownStart();
+    setTimeout(showGamePage, 4000);
+}
+
+function showGamePage() {
+    gamePage.style.display = 'block';
+    countdownPage.style.display = 'none';
+}
 
 startForm.addEventListener('submit', selectQuestion);
 function selectQuestion(e) {
     e.preventDefault();
     questionAmount = getRadioVal(this, 'questions');
     console.log(questionAmount);
+    showCountdown();
 }
 
 function getRadioVal(form, name) {
