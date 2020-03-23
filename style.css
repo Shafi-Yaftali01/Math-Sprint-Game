@@ -176,14 +176,6 @@ label {
     font-size: 24px;
 }
 
-/* input:checked + label {
-    background-color: #5AB8AB;
-    border: 2px solid #3F9188 !important;
-    border-radius: 5px; 
-    z-index: 2;
-    color: white;
-} */
-
 .selection-footer {
     top: 134px;
 }
