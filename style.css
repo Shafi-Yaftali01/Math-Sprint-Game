@@ -48,10 +48,18 @@ body {
     height: 600px;
 }
 
+
+/* Game Page */
+#item-container {
+    height: 552px;
+    overflow-y: scroll;
+}
+
 .item {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    height: 80px;
     margin: 0 50px;
     user-select: none;
 }

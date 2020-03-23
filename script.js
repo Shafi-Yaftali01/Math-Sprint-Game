@@ -8,6 +8,7 @@ const value10 = document.getElementById('value-10');
 const value25 = document.getElementById('value-25');
 const value50 = document.getElementById('value-50');
 const value99 = document.getElementById('value-99');
+const itemContainer = document.getElementById('item-container');
 
 let questionAmount;
 
@@ -21,8 +22,20 @@ function countdownStart() {
 function showCountdown() {
     countdownPage.style.display = 'flex';
     splashPage.style.display = 'none';
+    populateGamePage();
     countdownStart();
     setTimeout(showGamePage, 4000);
+}
+
+function populateGamePage() {
+    itemContainer.innerHTML = '<div class="item"></div><div class="item"></div><div class="item"></div>';
+    for (i = 0; i < questionAmount; i++) {
+        // console.log('yes');
+        itemContainer.innerHTML += `
+        <div class="item">
+            <h1>3 x 30 = 30</h1>
+        </div>`
+    }
 }
 
 function showGamePage() {
