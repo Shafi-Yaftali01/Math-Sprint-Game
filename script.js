@@ -11,7 +11,11 @@ const value99 = document.getElementById('value-99');
 const itemContainer = document.getElementById('item-container');
 
 let questionAmount;
+let equationsArray = [];
+let symbol = 'x';
+let equationValue;
 
+// Displays 3, 2, 1, GO!
 function countdownStart() {
     countdown.innerText = '3'; 
     setTimeout(() => { countdown.innerText = '2' }, 1000);
@@ -19,6 +23,7 @@ function countdownStart() {
     setTimeout(() => { countdown.innerText = 'GO!' }, 3000);
 }
 
+// Navigate from Splash Page to CountdownPage to Game Page
 function showCountdown() {
     countdownPage.style.display = 'flex';
     splashPage.style.display = 'none';
@@ -27,22 +32,80 @@ function showCountdown() {
     setTimeout(showGamePage, 4000);
 }
 
+// Dynamically adding correct/incorrect equations
 function populateGamePage() {
+    // Set blank space above
     itemContainer.innerHTML = '<div class="item"></div><div class="item"></div><div class="item"></div>';
-    for (i = 0; i < questionAmount; i++) {
-        // console.log('yes');
+    // Randomly choose how many correct equations there should be
+    correctEquations = getRandomInt(questionAmount);
+    // Set amount of wrong equations
+    wrongEquations = questionAmount - correctEquations;
+    console.log('Correct:', correctEquations);
+    // Loop through for each correct equation, multiply random numbers up to 9, push to array
+    for (i = 0; i < correctEquations; i++) {
+        firstNumber = getRandomInt(9);
+        secondNumber = getRandomInt(9);
+        equationValue = firstNumber * secondNumber;
+        equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
+        equationsArray.push(equation);
+    }
+    // Loop through for each wrong equation, mess with the equation results, push to array
+    for (i = 0; i < wrongEquations; i++) {
+        firstNumber = getRandomInt(9);
+        secondNumber = getRandomInt(9);
+        equationValue = firstNumber * secondNumber;
+        wrong[0] = `${firstNumber} x ${secondNumber - 1} = ${equationValue}`;
+        wrong[1] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
+        wrong[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
+        whichWrong = getRandomInt(2);
+        equation = wrong[whichWrong];
+        console.log('which Wrong',whichWrong);
+        console.log('equation', equation);
+        equationsArray.push(equation);
+    }
+    shuffle(equationsArray);
+    console.log(equationsArray);
+    // Create HTML element for each item in array
+    for (i = 0; i < equationsArray.length; i++) {
         itemContainer.innerHTML += `
         <div class="item">
-            <h1>3 x 30 = 30</h1>
+            <h1>${equationsArray[i]}</h1>
         </div>`
     }
 }
 
+// Get Random Number up to a certain amount
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+// Shuffle an Array
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+}
+
+// Displays Game Page
 function showGamePage() {
     gamePage.style.display = 'block';
     countdownPage.style.display = 'none';
 }
 
+// Form that decides amount of Questions
 startForm.addEventListener('submit', selectQuestion);
 function selectQuestion(e) {
     e.preventDefault();
@@ -51,6 +114,7 @@ function selectQuestion(e) {
     showCountdown();
 }
 
+// Get the value from selected radio button
 function getRadioVal(form, name) {
     let val;
     let radios = form.elements[name];
@@ -63,6 +127,7 @@ function getRadioVal(form, name) {
     return val;
 }
 
+// Switch selected input styling
 startForm.addEventListener('click', () => {
     if (value10.checked) {
         value10.parentElement.classList.add('selected-label');
