@@ -269,3 +269,9 @@ label {
 #game-page, #score-page, #countdown-page {
     display: none;
 }
+
+/* Media Query: Laptop */ 
+@media screen and (max-width: 1800px) {
+    .game-container { margin-top: 5px; }
+    .selected-item { top: 350px; }
+}
