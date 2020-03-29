@@ -38,23 +38,27 @@ let finalTimeDisplay = '0.0';
 let valueY = 80;
 let firstScroll = false;
 
-let bestScoreArray = [];
-updateBestScore();
+let bestScoreArray = [
+    { questions: 10, bestScore: finalTimeDisplay },
+    { questions: 25, bestScore: finalTimeDisplay },
+    { questions: 50, bestScore: finalTimeDisplay },
+    { questions: 99, bestScore: finalTimeDisplay }
+];
 
 // Update Best Score Array 
 function updateBestScore() {
-    bestScoreArray = [
-        { questions: 10, bestScore: finalTimeDisplay },
-        { questions: 25, bestScore: finalTimeDisplay },
-        { questions: 50, bestScore: finalTimeDisplay },
-        { questions: 99, bestScore: finalTimeDisplay }
-    ]
-    console.log(bestScoreArray);
-    
+    [...bestScoreArray].forEach((question, index) => {
+        if (questionAmount == question.questions) {
+            bestScoreArray[index].bestScore = finalTimeDisplay;
+        }
+    })
+ 
     bestScore1El.innerText = `${bestScoreArray[0].bestScore}s`;
     bestScore2El.innerText = `${bestScoreArray[1].bestScore}s`;
     bestScore3El.innerText = `${bestScoreArray[2].bestScore}s`;
     bestScore4El.innerText = `${bestScoreArray[3].bestScore}s`;
+
+    console.log(bestScoreArray);
 }
 
 // Displays 3, 2, 1, GO!
