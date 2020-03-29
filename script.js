@@ -16,6 +16,11 @@ const penaltyTimeEl = document.getElementById('penalty-time');
 
 const playAgainBtn = document.getElementById('play-again');
 
+const bestScore1El = document.getElementById('best-score-1');
+const bestScore2El = document.getElementById('best-score-2');
+const bestScore3El = document.getElementById('best-score-3');
+const bestScore4El = document.getElementById('best-score-4');
+
 let questionAmount;
 let equationsArray = [];
 let symbol = 'x';
@@ -28,9 +33,29 @@ let timer;
 let timePlayed = 0;
 let penaltyTime = 0;
 let finalTime = 0;
+let finalTimeDisplay = '0.0';
 
 let valueY = 80;
 let firstScroll = false;
+
+let bestScoreArray = [];
+updateBestScore();
+
+// Update Best Score Array 
+function updateBestScore() {
+    bestScoreArray = [
+        { questions: 10, bestScore: finalTimeDisplay },
+        { questions: 25, bestScore: finalTimeDisplay },
+        { questions: 50, bestScore: finalTimeDisplay },
+        { questions: 99, bestScore: finalTimeDisplay }
+    ]
+    console.log(bestScoreArray);
+    
+    bestScore1El.innerText = `${bestScoreArray[0].bestScore}s`;
+    bestScore2El.innerText = `${bestScoreArray[1].bestScore}s`;
+    bestScore3El.innerText = `${bestScoreArray[2].bestScore}s`;
+    bestScore4El.innerText = `${bestScoreArray[3].bestScore}s`;
+}
 
 // Displays 3, 2, 1, GO!
 function countdownStart() {
@@ -72,7 +97,7 @@ function populateGamePage() {
         firstNumber = getRandomInt(9);
         secondNumber = getRandomInt(9);
         equationValue = firstNumber * secondNumber;
-        wrong[0] = `${firstNumber} x ${secondNumber - 1} = ${equationValue}`;
+        wrong[0] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
         wrong[1] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
         wrong[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
         whichWrong = getRandomInt(2);
@@ -152,12 +177,13 @@ function checkScore() {
         });
         // Format & Display Time
         finalTime = timePlayed + penaltyTime;
-        finalTime = finalTime.toFixed(1);
+        finalTimeDisplay = finalTime.toFixed(1);
         baseTime = timePlayed.toFixed(1);
         penaltyTime = penaltyTime.toFixed(1);
         baseTimeEl.innerText = `Base Time: ${baseTime}s`;
         penaltyTimeEl.innerText = `Penalty: +${penaltyTime}s`;
-        finalTimeEl.innerText = `${finalTime}s`;
+        finalTimeEl.innerText = `${finalTimeDisplay}s`;
+        updateBestScore();
         // Scroll to Top, go to Score Page
         itemContainer.scroll(0, -5000);
         showScorePage();
