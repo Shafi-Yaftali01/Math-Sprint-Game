@@ -14,6 +14,8 @@ const finalTimeEl = document.getElementById('final-time');
 const baseTimeEl = document.getElementById('base-time');
 const penaltyTimeEl = document.getElementById('penalty-time');
 
+const playAgainBtn = document.getElementById('play-again');
+
 let questionAmount;
 let equationsArray = [];
 let symbol = 'x';
@@ -24,6 +26,9 @@ let playerGuessArray = [];
 
 let timePlayed = 0;
 let timer;
+
+let valueY = 80;
+let firstScroll = false;
 
 // Displays 3, 2, 1, GO!
 function countdownStart() {
@@ -45,7 +50,7 @@ function showCountdown() {
 // Dynamically adding correct/incorrect equations
 function populateGamePage() {
     // Set blank space above
-    itemContainer.innerHTML = '<div class="item"></div><div class="item"></div><div class="item"></div>';
+    itemContainer.innerHTML = '<div class="height-240"></div><div class="selected-item"></div>';
     // Randomly choose how many correct equations there should be
     correctEquations = getRandomInt(questionAmount);
     // Set amount of wrong equations
@@ -84,6 +89,8 @@ function populateGamePage() {
             <h1>${equationsArray[i].value}</h1>
         </div>`
     }
+    // Set Space Below
+    itemContainer.innerHTML += '<div class="height-500"></div>';
 }
 
 // Add a tenth of a second to timePlayed
@@ -100,10 +107,17 @@ function startTimer() {
     timePlayed = 0;
     timer = setInterval(addTime, 100);
     gamePage.removeEventListener('click', startTimer);
+    // Scroll first time
+    itemContainer.scroll(0, valueY);
+    setTimeout(() => firstScroll = true, 250);
 }
 
 // Take user selection right or wrong and add to the playerGuessArray
 function select(rightOrWrong) {
+    if (firstScroll == true) {
+        valueY = valueY + 80;
+        itemContainer.scroll(0, valueY);
+    }
     switch(rightOrWrong) {
         case true:
             playerGuessArray.push('true');
@@ -122,8 +136,10 @@ function checkScore() {
         clearInterval(timer);
         baseTime = timePlayed.toFixed(1);
         baseTimeEl.innerText = `Base Time: ${baseTime}s`;
-        finalTimeEl.innerText = `${baseTime}s`
+        finalTimeEl.innerText = `${baseTime}s`;
+        itemContainer.scroll(0, -5000);
         showScorePage();
+        setTimeout(() => playAgainBtn.style.display = 'block', 2000);
     } 
 }
 
@@ -139,12 +155,16 @@ function showGamePage() {
     countdownPage.style.display = 'none';
 }
 
+// Reset Game
 function playAgain() {
     gamePage.addEventListener('click', startTimer);
     scorePage.style.display = 'none';
     splashPage.style.display = 'block';
     equationsArray = [];
     playerGuessArray = [];
+    valueY = 80;
+    playAgainBtn.style.display = 'none';
+    firstScroll = false;
 }
 
 // Form that decides amount of Questions
