@@ -65,6 +65,7 @@ body {
     height: 552px;
     overflow-y: scroll;
     position: relative;
+    -ms-overflow-style: none;
 }
 
 #item-container::-webkit-scrollbar {
