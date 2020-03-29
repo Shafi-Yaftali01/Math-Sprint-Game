@@ -64,7 +64,7 @@ function populateGamePage() {
         secondNumber = getRandomInt(9);
         equationValue = firstNumber * secondNumber;
         equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
-        equationObject = { value: equation, evaluated: "true" }
+        equationObject = { value: equation, evaluated: 'true' }
         equationsArray.push(equationObject);
     }
     // Loop through for each wrong equation, mess with the equation results, push to array
@@ -79,7 +79,7 @@ function populateGamePage() {
         equation = wrong[whichWrong];
         console.log('which Wrong',whichWrong);
         console.log('equation', equation);
-        equationObject = { value: equation, evaluated: "false" }
+        equationObject = { value: equation, evaluated: 'false' }
         equationsArray.push(equationObject);
     }
     shuffle(equationsArray);
@@ -91,7 +91,7 @@ function populateGamePage() {
             <h1>${equationsArray[i].value}</h1>
         </div>`
     }
-    // Set Space Below
+    // Set blank space below
     itemContainer.innerHTML += '<div class="height-500"></div>';
 }
 
@@ -106,6 +106,7 @@ function addTime() {
 gamePage.addEventListener('click', startTimer);
 function startTimer() {
     console.log('timer start');
+    // Reset times
     timePlayed = 0;
     penaltyTime = 0;
     finalTime = 0;
@@ -118,10 +119,12 @@ function startTimer() {
 
 // Take user selection right or wrong and add to the playerGuessArray
 function select(rightOrWrong) {
+    // Scroll after first scroll
     if (firstScroll == true) {
         valueY = valueY + 80;
         itemContainer.scroll(0, valueY);
     }
+    // Add player guess to array
     switch(rightOrWrong) {
         case true:
             playerGuessArray.push('true');
