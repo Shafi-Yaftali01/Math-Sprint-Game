@@ -43,8 +43,8 @@
                 </div> -->
             </div>
             <div class="item-footer">
-                <button id="wrong">Wrong</button>
-                <button id="right">Right</button>
+                <button id="wrong" onclick="select(false)">Wrong</button>
+                <button id="right" onclick="select(true)">Right</button>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
             <form id="start-form">
                 <div class="selection-container">
                     <div class="radio-container">
-                        <input type="radio" name="questions" value="10" id="value-10">
+                        <input type="radio" name="questions" value="5" id="value-10">
                         <label for="questions">10 Questions</label>
                         <span class="best-score">
                             <p>Best Score</p>
@@ -95,12 +95,12 @@
         <div class="card" id="score-page">
             <div class="score-container">
                 <h1 class="title">Your Time</h1>
-                <h1 class="time">0:09</h1>
-                <h1 class="base-time">Base Time: 0:08</h1>
-                <h1 class="penalty">Penalty: 0:01</h1>
+                <h1 class="time" id="final-time">0:09</h1>
+                <h1 class="base-time" id="base-time">Base Time: 10.3s</h1>
+                <h1 class="penalty" id="penalty-time">Penalty: +0.0s</h1>
             </div>
             <div class="score-footer">
-                <button id="start">Play Again</button>
+                <button id="start" onclick="playAgain()">Play Again</button>
             </div>
         </div>
 

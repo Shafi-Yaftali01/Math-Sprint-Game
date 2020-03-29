@@ -10,10 +10,20 @@ const value50 = document.getElementById('value-50');
 const value99 = document.getElementById('value-99');
 const itemContainer = document.getElementById('item-container');
 
+const finalTimeEl = document.getElementById('final-time');
+const baseTimeEl = document.getElementById('base-time');
+const penaltyTimeEl = document.getElementById('penalty-time');
+
 let questionAmount;
 let equationsArray = [];
 let symbol = 'x';
 let equationValue;
+
+let correctEquation = true;
+let playerGuessArray = [];
+
+let timePlayed = 0;
+let timer;
 
 // Displays 3, 2, 1, GO!
 function countdownStart() {
@@ -47,7 +57,8 @@ function populateGamePage() {
         secondNumber = getRandomInt(9);
         equationValue = firstNumber * secondNumber;
         equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
-        equationsArray.push(equation);
+        equationObject = { value: equation, evaluated: true }
+        equationsArray.push(equationObject);
     }
     // Loop through for each wrong equation, mess with the equation results, push to array
     for (i = 0; i < wrongEquations; i++) {
@@ -61,7 +72,8 @@ function populateGamePage() {
         equation = wrong[whichWrong];
         console.log('which Wrong',whichWrong);
         console.log('equation', equation);
-        equationsArray.push(equation);
+        equationObject = { value: equation, evaluated: false }
+        equationsArray.push(equationObject);
     }
     shuffle(equationsArray);
     console.log(equationsArray);
@@ -69,40 +81,70 @@ function populateGamePage() {
     for (i = 0; i < equationsArray.length; i++) {
         itemContainer.innerHTML += `
         <div class="item">
-            <h1>${equationsArray[i]}</h1>
+            <h1>${equationsArray[i].value}</h1>
         </div>`
     }
 }
 
-// Get Random Number up to a certain amount
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+// Add a tenth of a second to timePlayed
+function addTime() {
+    timePlayed = timePlayed + .1;
+    console.log(timePlayed);
+    checkScore();
 }
 
-// Shuffle an Array
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+// Start timer when game page is clicked
+gamePage.addEventListener('click', startTimer);
+function startTimer() {
+    console.log('timer start');
+    timePlayed = 0;
+    timer = setInterval(addTime, 100);
+    gamePage.removeEventListener('click', startTimer);
+}
+
+// Take user selection right or wrong and add to the playerGuessArray
+function select(rightOrWrong) {
+    switch(rightOrWrong) {
+        case true:
+            playerGuessArray.push('true');
+            break;
+        case false:
+            playerGuessArray.push('false');
+            break;            
     }
-  
-    return array;
+}
+
+// Stop Timer, Process Results, go to Score Page
+function checkScore() {
+    if (playerGuessArray.length == questionAmount) {
+        console.log('player guesses', playerGuessArray);
+        console.log(timePlayed);
+        clearInterval(timer);
+        baseTime = timePlayed.toFixed(1);
+        baseTimeEl.innerText = `Base Time: ${baseTime}s`;
+        finalTimeEl.innerText = `${baseTime}s`
+        showScorePage();
+    } 
+}
+
+// Show Score Page
+function showScorePage() {
+    gamePage.style.display = 'none';
+    scorePage.style.display = 'block';
 }
 
 // Displays Game Page
 function showGamePage() {
     gamePage.style.display = 'block';
     countdownPage.style.display = 'none';
+}
+
+function playAgain() {
+    gamePage.addEventListener('click', startTimer);
+    scorePage.style.display = 'none';
+    splashPage.style.display = 'block';
+    equationsArray = [];
+    playerGuessArray = [];
 }
 
 // Form that decides amount of Questions
@@ -155,4 +197,27 @@ startForm.addEventListener('click', () => {
     } 
 });
 
+// Get Random Number up to a certain amount
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
+// Shuffle an Array
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+}
