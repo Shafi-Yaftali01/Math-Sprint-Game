@@ -24,8 +24,10 @@ let equationValue;
 let correctEquation = true;
 let playerGuessArray = [];
 
-let timePlayed = 0;
 let timer;
+let timePlayed = 0;
+let penaltyTime = 0;
+let finalTime = 0;
 
 let valueY = 80;
 let firstScroll = false;
@@ -62,7 +64,7 @@ function populateGamePage() {
         secondNumber = getRandomInt(9);
         equationValue = firstNumber * secondNumber;
         equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
-        equationObject = { value: equation, evaluated: true }
+        equationObject = { value: equation, evaluated: "true" }
         equationsArray.push(equationObject);
     }
     // Loop through for each wrong equation, mess with the equation results, push to array
@@ -77,7 +79,7 @@ function populateGamePage() {
         equation = wrong[whichWrong];
         console.log('which Wrong',whichWrong);
         console.log('equation', equation);
-        equationObject = { value: equation, evaluated: false }
+        equationObject = { value: equation, evaluated: "false" }
         equationsArray.push(equationObject);
     }
     shuffle(equationsArray);
@@ -105,6 +107,8 @@ gamePage.addEventListener('click', startTimer);
 function startTimer() {
     console.log('timer start');
     timePlayed = 0;
+    penaltyTime = 0;
+    finalTime = 0;
     timer = setInterval(addTime, 100);
     gamePage.removeEventListener('click', startTimer);
     // Scroll first time
@@ -131,14 +135,30 @@ function select(rightOrWrong) {
 // Stop Timer, Process Results, go to Score Page
 function checkScore() {
     if (playerGuessArray.length == questionAmount) {
+        clearInterval(timer);
         console.log('player guesses', playerGuessArray);
         console.log(timePlayed);
-        clearInterval(timer);
+        // Check for wrong guess, add penaltyTime
+        equationsArray.forEach((evaluated, index) => {
+            if (equationsArray[index].evaluated == playerGuessArray[index]) {
+                console.log('you guessed right');
+            } else {
+                console.log('you guessed wrong');
+                penaltyTime = penaltyTime + .5;
+            }
+        });
+        // Format & Display Time
+        finalTime = timePlayed + penaltyTime;
+        finalTime = finalTime.toFixed(1);
         baseTime = timePlayed.toFixed(1);
+        penaltyTime = penaltyTime.toFixed(1);
         baseTimeEl.innerText = `Base Time: ${baseTime}s`;
-        finalTimeEl.innerText = `${baseTime}s`;
+        penaltyTimeEl.innerText = `Penalty: +${penaltyTime}s`;
+        finalTimeEl.innerText = `${finalTime}s`;
+        // Scroll to Top, go to Score Page
         itemContainer.scroll(0, -5000);
         showScorePage();
+        // Turn on Play Again button after delay
         setTimeout(() => playAgainBtn.style.display = 'block', 2000);
     } 
 }
