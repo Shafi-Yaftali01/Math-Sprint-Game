@@ -14,6 +14,54 @@
             <h1>Math Sprint Game</h1>
         </div>
 
+        <!-- Splash Page -->
+        <div class="card" id="splash-page">
+            <form id="start-form">
+                <div class="selection-container">
+                    <div class="radio-container">
+                        <input type="radio" name="questions" value="10" id="value-10">
+                        <label for="questions">10 Questions</label>
+                        <span class="best-score">
+                            <span>Best Score</span>
+                            <span id="best-score-1">0.0s</span>
+                        </span>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" name="questions" value="25" id="value-25">
+                        <label for="questions">25 Questions</label>
+                        <span class="best-score">
+                            <span>Best Score</span>
+                            <span id="best-score-2">0.0s</span>
+                        </span>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" name="questions" value="50" id="value-50">
+                        <label for="questions">50 Questions</label>
+                        <span class="best-score">
+                            <span>Best Score</span>
+                            <span id="best-score-3">0.0s</span>
+                        </span>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" name="questions" value="99" id="value-99">
+                        <label for="questions">99 Questions</label>
+                        <span class="best-score">
+                            <span>Best Score</span>
+                            <span id="best-score-4">0.0s</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="selection-footer">
+                    <button id="start">Start Round</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Countdown Page -->
+        <div class="card" id="countdown-page">
+            <h1 class="countdown" id="countdown">3</h1>
+        </div>
+
         <!-- Game Page -->
         <div class="card" id="game-page">
             <div id="item-container">
@@ -48,49 +96,6 @@
             </div>
         </div>
 
-        <!-- Splash Page -->
-        <div class="card" id="splash-page">
-            <form id="start-form">
-                <div class="selection-container">
-                    <div class="radio-container">
-                        <input type="radio" name="questions" value="10" id="value-10">
-                        <label for="questions">10 Questions</label>
-                        <span class="best-score">
-                            <p>Best Score</p>
-                            <p id="best-score-1">0.0s</p>
-                        </span>
-                    </div>
-                    <div class="radio-container">
-                        <input type="radio" name="questions" value="25" id="value-25">
-                        <label for="questions">25 Questions</label>
-                        <span class="best-score">
-                            <p>Best Score</p>
-                            <p id="best-score-2">0.0s</p>
-                        </span>
-                    </div>
-                    <div class="radio-container">
-                        <input type="radio" name="questions" value="50" id="value-50">
-                        <label for="questions">50 Questions</label>
-                        <span class="best-score">
-                            <p>Best Score</p>
-                            <p id="best-score-3">0.0s</p>
-                        </span>
-                    </div>
-                    <div class="radio-container">
-                        <input type="radio" name="questions" value="99" id="value-99">
-                        <label for="questions">99 Questions</label>
-                        <span class="best-score">
-                            <p>Best Score</p>
-                            <p id="best-score-4">0.0s</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="selection-footer">
-                    <button id="start">Start Round</button>
-                </div>
-            </form>
-        </div>
-
         <!-- Score Page -->
         <div class="card" id="score-page">
             <div class="score-container">
@@ -104,12 +109,7 @@
             </div>
         </div>
 
-        <!-- Countdown Page -->
-        <div class="card" id="countdown-page">
-            <h1 class="countdown" id="countdown">3</h1>
-        </div>
-
-        <!-- Game Container -->
+    <!-- Game Container -->
     </div>
     <!-- Script -->
     <script src="script.js"></script>
