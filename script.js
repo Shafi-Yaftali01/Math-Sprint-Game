@@ -56,6 +56,7 @@ function checkLocalStorage() {
             { questions: 50, bestScore: finalTimeDisplay },
             { questions: 99, bestScore: finalTimeDisplay }
         ];
+        localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
     }
     refreshBestScore();
 }
@@ -213,7 +214,7 @@ function updateBestScore() {
                 // Return number with decimal from string
                 let storedScore = parseFloat(bestScoreArray[index].bestScore);
                 // Check if the new final score is less, if it is update it
-                if (storedScore > finalTime) {
+                if (storedScore == 0 || storedScore > finalTime) {
                     bestScoreArray[index].bestScore = finalTimeDisplay;
                 }
             }    
