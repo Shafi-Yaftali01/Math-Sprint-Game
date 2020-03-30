@@ -1,64 +1,71 @@
+// Pages
 const gamePage = document.getElementById('game-page');
 const scorePage = document.getElementById('score-page');
 const splashPage = document.getElementById('splash-page');
 const countdownPage = document.getElementById('countdown-page');
+// Countdown
 const countdown = document.getElementById('countdown');
+// Splash Page Form
 const startForm = document.getElementById('start-form');
 const value10 = document.getElementById('value-10');
 const value25 = document.getElementById('value-25');
 const value50 = document.getElementById('value-50');
 const value99 = document.getElementById('value-99');
-const itemContainer = document.getElementById('item-container');
-
-const finalTimeEl = document.getElementById('final-time');
-const baseTimeEl = document.getElementById('base-time');
-const penaltyTimeEl = document.getElementById('penalty-time');
-
-const playAgainBtn = document.getElementById('play-again');
-
+// Best Score Elements
 const bestScore1El = document.getElementById('best-score-1');
 const bestScore2El = document.getElementById('best-score-2');
 const bestScore3El = document.getElementById('best-score-3');
 const bestScore4El = document.getElementById('best-score-4');
+const itemContainer = document.getElementById('item-container');
+// Score Page
+const finalTimeEl = document.getElementById('final-time');
+const baseTimeEl = document.getElementById('base-time');
+const penaltyTimeEl = document.getElementById('penalty-time');
+const playAgainBtn = document.getElementById('play-again');
 
+// Equations
 let questionAmount;
 let equationsArray = [];
 let symbol = 'x';
 let equationValue;
-
 let correctEquation = true;
 let playerGuessArray = [];
+let bestScoreArray = [];
 
+// Time
 let timer;
 let timePlayed = 0;
 let penaltyTime = 0;
 let finalTime = 0;
 let finalTimeDisplay = '0.0';
 
+// Scroll 
 let valueY = 80;
 let firstScroll = false;
 
-let bestScoreArray = [
-    { questions: 10, bestScore: finalTimeDisplay },
-    { questions: 25, bestScore: finalTimeDisplay },
-    { questions: 50, bestScore: finalTimeDisplay },
-    { questions: 99, bestScore: finalTimeDisplay }
-];
+// Check Local Storage for Best Scores, Set bestScoreArray
+checkLocalStorage();
+function checkLocalStorage() {
+    if (localStorage.getItem('bestScores') !== null) {
+        bestScoreArray = JSON.parse(localStorage.bestScores);
+        console.log('butts');
+    } else {
+        bestScoreArray = [
+            { questions: 10, bestScore: finalTimeDisplay },
+            { questions: 25, bestScore: finalTimeDisplay },
+            { questions: 50, bestScore: finalTimeDisplay },
+            { questions: 99, bestScore: finalTimeDisplay }
+        ];
+    }
+    refreshBestScore();
+}
 
-// Update Best Score Array 
-function updateBestScore() {
-    [...bestScoreArray].forEach((question, index) => {
-        if (questionAmount == question.questions) {
-            bestScoreArray[index].bestScore = finalTimeDisplay;
-        }
-    })
- 
+// Refresh Splash Page Best Scores
+function refreshBestScore() {
     bestScore1El.innerText = `${bestScoreArray[0].bestScore}s`;
     bestScore2El.innerText = `${bestScoreArray[1].bestScore}s`;
     bestScore3El.innerText = `${bestScoreArray[2].bestScore}s`;
     bestScore4El.innerText = `${bestScoreArray[3].bestScore}s`;
-
-    console.log(bestScoreArray);
 }
 
 // Displays 3, 2, 1, GO!
@@ -194,6 +201,29 @@ function checkScore() {
         // Turn on Play Again button after delay
         setTimeout(() => playAgainBtn.style.display = 'block', 2000);
     } 
+}
+
+// Update Best Score Array 
+function updateBestScore() {
+    [...bestScoreArray].forEach((equation, index) => {
+        // Select correct Best Score to update
+        if (questionAmount == equation.questions) {
+            if (localStorage.getItem('bestScores') !== null) {
+                bestScoreArray = JSON.parse(localStorage.bestScores);
+                // Return number with decimal from string
+                let storedScore = parseFloat(bestScoreArray[index].bestScore);
+                // Check if the new final score is less, if it is update it
+                if (storedScore > finalTime) {
+                    bestScoreArray[index].bestScore = finalTimeDisplay;
+                }
+            }    
+        }
+    });
+    // Update Splash Page
+    refreshBestScore();
+    // Save to Local Storage
+    localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+    //console.log(bestScoreArray);
 }
 
 // Show Score Page
