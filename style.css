@@ -175,6 +175,9 @@ label {
     justify-content: center;
     align-items: center;
     position: relative;
+}
+
+.item-footer {
     top: 1px;
 }
 
@@ -268,7 +271,6 @@ button:active {
 #play-again {
     display: none;
 }
-
 
 /* Hide pages on load */
 #game-page, #score-page, #countdown-page {
