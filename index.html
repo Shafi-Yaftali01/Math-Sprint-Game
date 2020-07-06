@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Sprint</title>
+    <title>Math Sprint Game</title>
     <link rel="icon" type="image/png" href="https://s2.googleusercontent.com/s2/favicons?domain=www.jacinto.design">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
+
+        <!-- Header -->
         <div class="header">
             <h1>Math Sprint Game</h1>
         </div>
@@ -52,7 +54,7 @@
                     </div>
                 </div>
                 <div class="selection-footer">
-                    <button id="start">Start Round</button>
+                    <button class="start">Start Round</button>
                 </div>
             </form>
         </div>
@@ -91,10 +93,10 @@
                 </div> -->
             </div>
             <div class="item-footer">
-                <button id="wrong" onclick="select(false)">Wrong</button>
-                <button id="right" onclick="select(true)">Right</button>
+                <button class="wrong" id="wrong" onclick="select(false)">Wrong</button>
+                <button class="right" id="right" onclick="select(true)">Right</button>
             </div>
-        </div>
+        </div>        
 
         <!-- Score Page -->
         <div class="card" id="score-page">
@@ -105,11 +107,10 @@
                 <h1 class="penalty" id="penalty-time">Penalty: +0.0s</h1>
             </div>
             <div class="score-footer">
-                <button id="play-again" onclick="playAgain()">Play Again</button>
+                <button class="play-again" id="play-again" onclick="playAgain()">Play Again</button>
             </div>
         </div>
 
-    <!-- Game Container -->
     </div>
     <!-- Script -->
     <script src="script.js"></script>
