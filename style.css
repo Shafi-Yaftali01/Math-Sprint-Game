@@ -5,7 +5,7 @@
 }
 
 :root {
-  --primary-color: rgb(15, 158, 2);
+  --primary-color: dodgerblue;
   --select-color: dodgerblue;
   --success: rgb(15, 158, 2);
   --danger: rgb(214, 23, 23);
@@ -124,14 +124,14 @@ label {
   width: 100%;
 }
 
-#item-container {
+.item-container {
   height: 552px;
   overflow-y: scroll;
   position: relative;
   -ms-overflow-style: none;
 }
 
-#item-container::-webkit-scrollbar {
+.item-container::-webkit-scrollbar {
   display: none;
 }
 
@@ -212,14 +212,10 @@ button:active {
 }
 
 /* Countdown Page ---------------------- */
-.card#countdown-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .countdown {
+  margin-top: 45%;
   font-size: 100px;
+  text-align: center;
   user-select: none;
   cursor: pointer;
 }
@@ -259,11 +255,6 @@ button:active {
 
 .penalty-time {
   color: var(--danger);
-}
-
-/* Hide pages on load */
-.hidden {
-  display: none;
 }
 
 /* Media Query: Laptop */

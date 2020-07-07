@@ -19,7 +19,7 @@
         <div class="card" id="splash-page">
             <form id="start-form">
                 <div class="selection-container">
-                    <!-- 10 Questions -->
+                    <!-- 10 Questions Radio Input -->
                     <div class="radio-container">
                         <label for="value-10">10 Questions</label>
                         <input type="radio" name="questions" value="10" id="value-10">
@@ -28,7 +28,7 @@
                             <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
-                    <!-- 25 Questions -->
+                    <!-- 25 Questions Radio Input -->
                     <div class="radio-container">
                         <label for="value-25">25 Questions</label>
                         <input type="radio" name="questions" value="25" id="value-25">
@@ -37,7 +37,7 @@
                             <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
-                    <!-- 50 Questions -->
+                    <!-- 50 Questions Radio Input -->
                     <div class="radio-container">
                         <label for="value-50">50 Questions</label>
                         <input type="radio" name="questions" value="50" id="value-50">
@@ -46,7 +46,7 @@
                             <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
-                    <!-- 99 Questions -->
+                    <!-- 99 Questions Radio Input -->
                     <div class="radio-container">
                         <label for="value-99">99 Questions</label>
                         <input type="radio" name="questions" value="99" id="value-99">
@@ -64,14 +64,14 @@
         </div>
 
         <!-- Countdown Page -->
-        <div class="card hidden" id="countdown-page">
-            <h1 class="countdown" id="countdown">3</h1>
+        <div class="card" id="countdown-page" hidden>
+            <h1 class="countdown">3</h1>
         </div>
 
         <!-- Game Page -->
-        <div class="card hidden" id="game-page">
+        <div class="card" id="game-page" hidden>
             <!-- Item Container -->
-            <div id="item-container"></div>
+            <div class="item-container"></div>
             <!-- Right/Wrong Buttons -->
             <div class="item-footer">
                 <button class="wrong" onclick="select(false)">Wrong</button>
@@ -80,7 +80,7 @@
         </div>        
 
         <!-- Score Page -->
-        <div class="card hidden" id="score-page">
+        <div class="card" id="score-page" hidden>
             <!-- Score Container -->
             <div class="score-container">
                 <h1 class="title">Your Time</h1>
@@ -90,7 +90,7 @@
             </div>
             <!-- Play Again Button -->
             <div class="score-footer">
-                <button class="play-again hidden" onclick="playAgain()">Play Again</button>
+                <button class="play-again" onclick="playAgain()" hidden>Play Again</button>
             </div>
         </div>
 
