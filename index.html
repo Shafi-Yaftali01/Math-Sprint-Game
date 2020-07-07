@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Sprint Game</title>
     <link rel="icon" type="image/png" href="https://s2.googleusercontent.com/s2/favicons?domain=www.jacinto.design">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,94 +19,78 @@
         <div class="card" id="splash-page">
             <form id="start-form">
                 <div class="selection-container">
+                    <!-- 10 Questions -->
                     <div class="radio-container">
+                        <label for="value-10">10 Questions</label>
                         <input type="radio" name="questions" value="10" id="value-10">
-                        <label for="questions">10 Questions</label>
                         <span class="best-score">
                             <span>Best Score</span>
-                            <span id="best-score-1">0.0s</span>
+                            <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
+                    <!-- 25 Questions -->
                     <div class="radio-container">
+                        <label for="value-25">25 Questions</label>
                         <input type="radio" name="questions" value="25" id="value-25">
-                        <label for="questions">25 Questions</label>
                         <span class="best-score">
                             <span>Best Score</span>
-                            <span id="best-score-2">0.0s</span>
+                            <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
+                    <!-- 50 Questions -->
                     <div class="radio-container">
+                        <label for="value-50">50 Questions</label>
                         <input type="radio" name="questions" value="50" id="value-50">
-                        <label for="questions">50 Questions</label>
                         <span class="best-score">
                             <span>Best Score</span>
-                            <span id="best-score-3">0.0s</span>
+                            <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
+                    <!-- 99 Questions -->
                     <div class="radio-container">
+                        <label for="value-99">99 Questions</label>
                         <input type="radio" name="questions" value="99" id="value-99">
-                        <label for="questions">99 Questions</label>
                         <span class="best-score">
                             <span>Best Score</span>
-                            <span id="best-score-4">0.0s</span>
+                            <span class="best-score-value">0.0s</span>
                         </span>
                     </div>
                 </div>
+                <!-- Start Button -->
                 <div class="selection-footer">
-                    <button class="start">Start Round</button>
+                    <button class="start" type="submit">Start Round</button>
                 </div>
             </form>
         </div>
 
         <!-- Countdown Page -->
-        <div class="card" id="countdown-page">
+        <div class="card hidden" id="countdown-page">
             <h1 class="countdown" id="countdown">3</h1>
         </div>
 
         <!-- Game Page -->
-        <div class="card" id="game-page">
-            <div id="item-container">
-                <!-- <div class="item finished">
-                    <h1>3 x 30 = 30</h1>
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="item finished">
-                    <h1>3 x 30 = 30</h1>
-                    <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="item finished">
-                    <h1>3 x 30 = 30</h1>
-                    <i class="fas fa-times-circle"></i>
-                </div>
-                <div class="item selected-item">
-                    <h1>3 x 30 = 30</h1>           
-                </div>
-                <div class="item">
-                    <h1>3 x 30 = 30</h1>
-                </div>
-                <div class="item">
-                    <h1>3 x 30 = 30</h1>
-                </div>
-                <div class="item">
-                    <h1>3 x 30 = 30</h1>
-                </div> -->
-            </div>
+        <div class="card hidden" id="game-page">
+            <!-- Item Container -->
+            <div id="item-container"></div>
+            <!-- Right/Wrong Buttons -->
             <div class="item-footer">
-                <button class="wrong" id="wrong" onclick="select(false)">Wrong</button>
-                <button class="right" id="right" onclick="select(true)">Right</button>
+                <button class="wrong" onclick="select(false)">Wrong</button>
+                <button class="right" onclick="select(true)">Right</button>
             </div>
         </div>        
 
         <!-- Score Page -->
-        <div class="card" id="score-page">
+        <div class="card hidden" id="score-page">
+            <!-- Score Container -->
             <div class="score-container">
                 <h1 class="title">Your Time</h1>
-                <h1 class="time" id="final-time">0:09</h1>
-                <h1 class="base-time" id="base-time">Base Time: 10.3s</h1>
-                <h1 class="penalty" id="penalty-time">Penalty: +0.0s</h1>
+                <h1 class="final-time">0:09</h1>
+                <h1 class="base-time">Base Time: 10.3s</h1>
+                <h1 class="penalty-time">Penalty: +0.0s</h1>
             </div>
+            <!-- Play Again Button -->
             <div class="score-footer">
-                <button class="play-again" id="play-again" onclick="playAgain()">Play Again</button>
+                <button class="play-again hidden" onclick="playAgain()">Play Again</button>
             </div>
         </div>
 
