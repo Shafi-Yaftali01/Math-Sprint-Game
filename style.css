@@ -283,6 +283,14 @@ button:active {
     font-size: 1.2rem;
   }
 
+  .countdown {
+    margin-top: 60%;
+  }
+
+  .selection-container {
+    top: 100px;
+  }
+
   .radio-container {
     width: 93%;
     margin: 15px;
