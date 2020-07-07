@@ -1,4 +1,3 @@
-// Shuffle an Array
 function shuffle(array) {
   let currentIndex = array.length;
   let temporaryValue;
