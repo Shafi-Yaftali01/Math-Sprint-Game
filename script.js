@@ -66,7 +66,7 @@ function refreshBestScore() {
 }
 
 // Check Local Storage for Best Scores, Set bestScoreArray
-function checkLocalStorage() {
+function getSavedBestScores() {
   if (localStorage.getItem('bestScores')) {
     bestScoreArray = JSON.parse(localStorage.bestScores);
   } else {
@@ -84,13 +84,13 @@ function checkLocalStorage() {
 // Update Best Score Array
 function updateBestScore() {
   bestScoreArray.forEach((equation, index) => {
-    const equationQuestions = +equation.questions;
+    const equationQuestions = Number(equation.questions);
     // Select correct Best Score to update
-    if (+questionAmount === equationQuestions) {
+    if (Number(questionAmount) === equationQuestions) {
       if (localStorage.getItem('bestScores')) {
         bestScoreArray = JSON.parse(localStorage.bestScores);
         // Return number with decimal from string
-        const savedBestScore = +bestScoreArray[index].bestScore;
+        const savedBestScore = Number(bestScoreArray[index].bestScore);
         // Check if the new final score is less, if it is update it
         if (savedBestScore === 0 || savedBestScore > finalTime) {
           bestScoreArray[index].bestScore = finalTimeDisplay;
@@ -106,7 +106,7 @@ function updateBestScore() {
 
 // Stop Timer, Process Results, go to Score Page
 function checkScore() {
-  if (playerGuessArray.length === +questionAmount) {
+  if (playerGuessArray.length === Number(questionAmount)) {
     clearInterval(timer);
     // Check for wrong guess, add penaltyTime
     equationsArray.forEach((evaluated, index) => {
@@ -269,7 +269,7 @@ function showCountdown() {
 // Take user selection right or wrong and add to the playerGuessArray
 function select(rightOrWrong) {
   // Scroll after first scroll
-  if (firstScroll === true) {
+  if (firstScroll) {
     valueY += 80;
     itemContainer.scroll(0, valueY);
   }
@@ -330,4 +330,4 @@ gamePage.addEventListener('click', startTimer);
 startForm.addEventListener('submit', selectQuestion);
 
 // On Load
-checkLocalStorage();
+getSavedBestScores();
