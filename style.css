@@ -84,7 +84,6 @@ label {
 }
 
 .selected-label {
-  border: 2px solid rgb(0, 126, 251);
   background: var(--select-color);
   color: white;
 }
@@ -260,11 +259,11 @@ button:active {
 /* Media Query: Laptop */
 @media screen and (max-width: 1800px) {
   .game-container {
-    margin-top: 5px;
+    margin-top: 35px;
   }
 
   .selected-item {
-    top: 350px;
+    top: 380px;
   }
 }
 
